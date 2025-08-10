@@ -2,5 +2,6 @@
 @import "tailwindcss";
 body {
     font-family: 'Nunito Sans', sans-serif;
+    scroll-behavior: smooth;
     @apply bg-neutral-900 text-neutral-300
 }

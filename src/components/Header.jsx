@@ -32,7 +32,7 @@ const Header = () => {
         <nav className="hidden lg:flex space-x-4 items-center gap-1 ml-5">
           {navigation.map((nav, index) => {
             return (
-              <div>
+              <div key={nav.label}>
                 <NavLink
                   key={nav.label}
                   to={nav.href}

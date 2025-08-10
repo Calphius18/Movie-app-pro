@@ -1,6 +1,7 @@
 import React , { useEffect, useState }from 'react'
 import { useSelector } from 'react-redux';
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
+import star from "../assets/star.svg"
 
 const BannerHome = () => {
   const bannerData = useSelector((state) => state.movieData.bannerData);
@@ -35,10 +36,9 @@ const BannerHome = () => {
 
   return (
     <div className="flex min-h-full max-h-95vh overflow-hidden ">
-      <div></div>
       {bannerData.map((data, index) => {
         return (
-          <div className="min-w-full min-h-[450px] lg:min-h-full group overflow-hidden relative transition-all" style= {{ transform: `translateX(-${currentImage * 100}%)`}}>
+          <div key={data.id+"bannerHome"+index}className="min-w-full min-h-[450px] lg:min-h-full group overflow-hidden relative transition-all" style= {{ transform: `translateX(-${currentImage * 100}%)`}}>
             <div className="w-full h-full">
               <img
                 src={imageURL + "" + data.backdrop_path}
@@ -69,7 +69,7 @@ const BannerHome = () => {
                   {data.overview}
                 </p>
                 <div className="flex items-center gap-4">
-                  <p>Rating: {Number(data.vote_average).toFixed(1)}+</p>
+                  <p className=' flex justify-between gap-2'>Rating: {Number(data.vote_average).toFixed(1)}<img src={star} alt="Star Rating"/></p>
                   <span>|</span>
                   <p>Views: {Number(data.popularity).toFixed()}</p>
                 </div>

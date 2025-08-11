@@ -49,12 +49,12 @@ const ExplorePage = () => {
   }, [])
 
   return (
-    <div className='pt-16'>
+    <div className='py-16'>
       <div className="container mx-auto">
         
         <h1 className="capitalize text-lg lg:text-xl font-semibold my-3">Popular {params.explore}</h1>
 
-        <div className="grid grid-cols-[repeat(auto-fit,230px)] gap-5">
+        <div className="grid grid-cols-[repeat(auto-fit,230px)] gap-5 justify-center lg:justify-center">
          {
           data.map((exploreData, index) => {
             return (

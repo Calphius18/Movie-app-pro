@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Card from './Card';
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
-const ScrollCards = ({data= [], heading}) => {
+const ScrollCards = ({data= [], heading, trending}) => {
     const containerRef = useRef();
 
     const handleNext = () => {
@@ -29,7 +29,7 @@ const ScrollCards = ({data= [], heading}) => {
                   key={data.id + "heading" + index}
                   data={data}
                   index={index + 1}
-                  trending={true}
+                  trending={trending}
                 />
               );
             })}

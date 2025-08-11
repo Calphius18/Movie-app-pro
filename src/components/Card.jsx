@@ -24,9 +24,9 @@ const Card = ({data, trending, index}) => {
      <div className='absolute bottom-0 h-16 backdrop-blur-3xl w-full bg-black/55 p-2'>
       <h2 className='text-ellipsis line-clamp-1 text-lg font-semibold'>{data?.title || data?.name}</h2>
       <div className='text-sm text-neutral-500 flex justify-between items-center'>
-        <p>{moment(data?.release_date || data?.first_air_date).format("MMMM Do YYYY")}</p>
+        <p>{moment(data?.release_date || data?.first_air_date).format("MMMM Do YY")}</p>
         <p>|</p>
-        <p className='flex text-xs px-1 bg-black rounded-full text-white'>Rating : {Number(data.vote_average).toFixed(1)}<img src={star} alt="Star Rating" width={5}/></p>
+        <p className='flex text-xs px-1 bg-black rounded-full text-white'>Rating : {Number(data.vote_average).toFixed(1)}<img src={star} alt="Star Rating" width={7}/></p>
       </div>
      </div>
 

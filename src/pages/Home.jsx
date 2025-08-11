@@ -18,10 +18,10 @@ const {data : onAirTvShowData} = useFetch("/tv/on_the_air")
    <div>
      <BannerHome />
      <ScrollCards data={trendingData} heading={"Trending"} trending={true}/>
-     <ScrollCards data={nowPlayingData} heading={"Now Playing"}/>
-     <ScrollCards data={topRatedData} heading={"Top Rated Movies"}/>
-     <ScrollCards data={popularTvShowData} heading={"Popular TV Shows"}/>
-     <ScrollCards data={onAirTvShowData} heading={"On Air TV Shows"}/>
+     <ScrollCards data={nowPlayingData} heading={"Now Playing"} media_type={"movie"}/>
+     <ScrollCards data={topRatedData} heading={"Top Rated Movies"} media_type={"movie"}/>
+     <ScrollCards data={popularTvShowData} heading={"Popular TV Shows"} media_type={"tv"}/>
+     <ScrollCards data={onAirTvShowData} heading={"On Air TV Shows"} media_type={"tv"}/>
    </div>
  );
 };

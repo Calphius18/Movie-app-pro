@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetchDetails from '../hooks/useFetchDetails';
 import { useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import moment from 'moment';
 import Divider from '../components/Divider';
 import useFetch from '../hooks/useFetch';
 import ScrollCards from '../components/ScrollCards';
+import VideoPlay from '../components/VideoPlay';
 
 const DetailsPage = () => {
   const params = useParams()
@@ -15,6 +16,8 @@ const DetailsPage = () => {
   const {data : similarData} = useFetch(`/${params?.explore}/${params.id}/similar`)
   const {data : recommendedData} = useFetch(`/${params?.explore}/${params.id}/recommendations`)
   const imageURL = useSelector((state) => state.movieData.imageURL);
+  const [playVideo, setPlayVideo] = useState(false)
+  const [playVideoId, setPlayVideoId] = useState("")
 
   console.log("data",data)
   console.log("castData",castData)
@@ -55,15 +58,19 @@ const producer = castData?.crew
       </div>
 
       <div className="container mx-auto px-3 py-16 lg:py-0 flex flex-col lg:flex-row gap-3 lg:gap-10 items-start">
-        <div className="relative mx-auto lg:-mt-24 lg:mx-0 w-full max-w-[240px] aspect-[2/3]">
+        <div className="relative mx-auto lg:-mt-24 mt-0 lg:mx-0 w-full max-w-[240px] aspect-[2/3] flex flex-col items-center">
           <img
             src={imageURL + data?.poster_path}
             alt="Poster"
             className="w-full h-full object-cover rounded"
           />
+          <button className="mt-4 w-full py-2 px-4 text-center bg-white text-black rounded-full font-bold text-lg hover:bg-gradient-to-l from-red-700 to-orange-500 shadow-md transition-all hover:scale-95">
+            Play Now
+          </button>
         </div>
 
-        <div className="text-center">
+        <div className="text-center mt-16 lg:mt-0">
+
           <h2 className="text-2xl lg:text-4xl font-bold text-white">
             {data?.title || data?.name}
           </h2>
@@ -170,6 +177,8 @@ const producer = castData?.crew
           media_type={params.explore}
         />
       </div>
+
+      <VideoPlay />
     </div>
   );
 }

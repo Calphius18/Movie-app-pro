@@ -64,6 +64,7 @@ const SearchPage = () => {
           navigate(`/search?q=${e.target.value}`);
         }}
         className="px-4 py-1 text-lg rounded-full w-full h-full bg-white text-black"
+        value={debouncedSearchTerm.split("%20")?.join(" ")}
         />
       </div>
 

@@ -32,7 +32,7 @@ const BannerHome = () => {
       }
     }, 5000)
     return () => clearInterval(interval)
-  }, [bannerData, imageURL])
+  }, [bannerData, imageURL, currentImage])
 
   return (
     <div className="flex min-h-full max-h-95vh overflow-hidden ">
@@ -69,7 +69,7 @@ const BannerHome = () => {
                   {data.overview}
                 </p>
                 <div className="flex items-center gap-4">
-                  <p className=' flex justify-between gap-2'>Rating: {Number(data.vote_average).toFixed(1)}<img src={star} alt="Star Rating"/></p>
+                  <p className='flex justify-between gap-2'>Rating: {Number(data.vote_average).toFixed(1)}<img src={star} alt="Star Rating"/></p>
                   <span>|</span>
                   <p>Views: {Number(data.popularity).toFixed()}</p>
                 </div>

@@ -14,7 +14,7 @@ const ScrollCards = ({data= [], heading, trending, media_type}) => {
 
     return (
       <div className="container mx-auto my-10 px-3">
-        <h2 className="text-lx text-2xl font-bold mb-3 text-white">
+        <h2 className="text-lx text-2xl font-bold mb-3 text-white capitalize">
           {heading}
         </h2>
 

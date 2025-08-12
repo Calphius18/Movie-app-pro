@@ -7,7 +7,11 @@ import { Link } from 'react-router-dom';
 const Card = ({data, trending, index, media_type}) => {
   const imageURL = useSelector((state) => state.movieData.imageURL);
   const mediaType = data.media_type ?? media_type
-  const date = data?.release_date || data?.first_air_date;
+  const date = data?.release_date || data?.first_air_date
+              ? moment(data.release_date || data.first_air_date).format(
+                  "MMMM Do YY"
+                )
+              : "N/A";
   return (
     <Link
       to={"/" + mediaType + "/" + data.id}
@@ -35,11 +39,7 @@ const Card = ({data, trending, index, media_type}) => {
         </h2>
         <div className="text-sm text-neutral-500 flex justify-between items-center">
           <p>
-            {data?.release_date || data?.first_air_date
-              ? moment(data.release_date || data.first_air_date).format(
-                  "MMMM Do YY"
-                )
-              : "N/A"}
+            {date}
           </p>
           <p>|</p>
           <p className="flex text-xs px-1 bg-black rounded-full text-white">

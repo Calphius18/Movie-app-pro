@@ -4,18 +4,20 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import userIcons from "../assets/user.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { navigation } from "../contents/navigation";
+import { useDebounce } from 'use-debounce';
 
 const Header = () => {
   const location= useLocation()
   const removeSpace = location?.search?.slice(3)?.split("%20")?.join(" ")
   const [searchInput, setSearchInput] = useState(removeSpace);
   const navigate = useNavigate();
+  const [debouncedSearchTerm] = useDebounce(searchInput, 1000);
 
   useEffect(() => {
     if (searchInput) {
       navigate(`/search?q=${searchInput}`);
     }
-  }, [searchInput]);
+  }, [searchInput, debouncedSearchTerm]);
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
@@ -65,7 +67,19 @@ const Header = () => {
               value={searchInput}
             />
 
-            <button className="text-white text-2xl " onClick={handleSubmit}>
+            <button
+              type="button"
+              className="text-white text-2xl"
+              onClick={() => {
+                if (window.innerWidth < 1024) {
+                  // Mobile: Go to search page directly
+                  navigate("/search");
+                } else {
+                  // Desktop: submit current input
+                  handleSubmit();
+                }
+              }}
+            >
               <IoSearchOutline />
             </button>
           </form>

@@ -9,6 +9,7 @@ import useFetch from '../hooks/useFetch';
 import ScrollCards from '../components/ScrollCards';
 import VideoPlay from '../components/VideoPlay';
 
+
 const DetailsPage = () => {
   const params = useParams()
   const {data} = useFetchDetails(`/${params?.explore}/${params?.id}`)
@@ -21,6 +22,11 @@ const DetailsPage = () => {
 
   console.log("data",data)
   console.log("castData",castData)
+
+  const handlePlayVideo = (data) => {
+    setPlayVideoId(data)
+    setPlayVideo(true)
+  }
 
   const runtime = data?.last_episode_to_air?.runtime ?? data?.runtime;
 
@@ -64,13 +70,15 @@ const producer = castData?.crew
             alt="Poster"
             className="w-full h-full object-cover rounded"
           />
-          <button className="mt-4 w-full py-2 px-4 text-center bg-white text-black rounded-full font-bold text-lg hover:bg-gradient-to-l from-red-700 to-orange-500 shadow-md transition-all hover:scale-95">
+          <button
+            onClick={() => handlePlayVideo(data)}
+            className="mt-4 w-full py-2 px-4 text-center bg-white text-black rounded-full font-bold text-lg hover:bg-gradient-to-l from-red-700 to-orange-500 shadow-md transition-all hover:scale-95"
+          >
             Play Now
           </button>
         </div>
 
         <div className="text-center mt-16 lg:mt-0">
-
           <h2 className="text-2xl lg:text-4xl font-bold text-white">
             {data?.title || data?.name}
           </h2>
@@ -98,7 +106,7 @@ const producer = castData?.crew
               <>
                 <span>|</span>
                 <p>
-                  EPs : {data?.last_episode_to_air?.episode_number ?? "N/A"}
+                  EPs : {data?.number_of_episodes ?? "N/A"}
                 </p>
               </>
             )}
@@ -178,7 +186,9 @@ const producer = castData?.crew
         />
       </div>
 
-      <VideoPlay />
+      {playVideo && (
+        <VideoPlay data={playVideoId} close={() => setPlayVideo(false)} media_type={params?.explore}/>
+      )}
     </div>
   );
 }

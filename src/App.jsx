@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setBannerData, setImageURL } from './store/movieSlice';
-import { Analytics} from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.params = {
@@ -53,10 +53,10 @@ function App() {
         <Header />
         <div className='min-h-[90vh]'>
           <Outlet />
-          <Analytics/>
         </div>
         <Footer />
         <MobileNavigation />
+        <Analytics />
       </main>
     </>
   )
